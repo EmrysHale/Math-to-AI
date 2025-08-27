@@ -19,7 +19,7 @@ Math-to-AI/
 ├─ README.md
 │   └─ 仓库总览、学习目标、目录导航
 │
-├─ notes/                                # 系统化笔记（LaTeX or md）
+├─ notes/                                # 系统化笔记（LaTeX）
 │  ├─ math/                              # 数学笔记
 │  ├─ cs/                                # 计算机科学笔记
 │  └─ ai/                                # AI/ML 理论笔记

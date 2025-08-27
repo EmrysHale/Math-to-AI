@@ -1,0 +1,72 @@
+\documentclass[12pt]{article} 
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\titleformat{\section}[block]{\normalfont\LARGE\bfseries\centering}{\thesection}{1em}{}
+\titleformat{\subsection}[runin]{\normalfont\Large\bfseries}{\thesubsection}{1em}{}
+
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+
+\usepackage{setspace}
+\setstretch{1.25}              
+\setlength{\parskip}{5pt}     
+\setlength{\parindent}{0em} 
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{16pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\nouppercase{\leftmark}} 
+\fancyfoot[C]{\thepage}                
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\newtheoremstyle{oneline}% name
+  {}% space above
+  {}% space below
+  {\normalfont}% body font
+  {}% indent amount
+  {\bfseries}% theorem head font
+  {}% punctuation after theorem head
+  {0.6em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{\textbf{ (#3)}}}
+\theoremstyle{oneline}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{remark}{Remark}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{example}{Example}[subsection]
+\newtheorem{property}{Property}[subsection]
+
+\newtheoremstyle{twoline}% name
+  {1em}% space above
+  {0.5em}% empace below
+  {\itshape}% body font
+  {}% indent amount
+  {\bfseries}% theorem head font
+  {}% punctuation after theorem head
+  {\newline}% space after theorem head
+  {\large\thmname{#1}}
+\theoremstyle{twoline}
+\newtheorem{introduction}{Introduction}
+\newtheorem{exercise}{Exercise}[section]
+
+\title{Mathematical Analysis Study Notes}
+\author{Emrys}
+\date{}
+
+\begin{document} 
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Series}
+
+
+
+\end{document}
