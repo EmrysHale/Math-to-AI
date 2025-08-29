@@ -31,7 +31,7 @@
   {\bfseries}% theorem head font
   {}% punctuation after theorem head
   {0.6em}% space after theorem head
-  {\thmname{#1}\thmnumber{ #2}\thmnote{\textbf{ (#3)}}}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{\textit{ (#3)}}}
 \theoremstyle{oneline}
 
 \newtheorem{theorem}{Theorem}[subsection]
@@ -46,7 +46,7 @@
 \newtheoremstyle{twoline}% name
   {1em}% space above
   {0.5em}% empace below
-  {\itshape}% body font
+  {\rmfamily}% body font
   {}% indent amount
   {\bfseries}% theorem head font
   {}% punctuation after theorem head
@@ -55,6 +55,12 @@
 \theoremstyle{twoline}
 \newtheorem{introduction}{Introduction}
 \newtheorem{exercise}{Exercise}[section]
+
+\makeatletter 
+\@addtoreset{equation}{section}
+\makeatother
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
 
 \title{Mathematical Analysis Study Notes}
 \author{Emrys}
@@ -65,8 +71,185 @@
 \tableofcontents
 \newpage
 
-\section{Series}
+\section{Numerical Sequences and Series}
 
+\subsection{Series}
+\begin{definition}
+  Given a sequence $\{a_n\}$,we use the notation
+   \[\sum\limits_{n=p}^{q}a_n\quad (p\leq q)\]
+  to denote the sum $a_p+a_{p+1}+\cdots+a_q$. And we call the symbolic expression
+  \[\sum\limits_{n=1}^{\infty}a_n=a_1+a_2+\cdots+a_n+\cdots\]
+  an infinite series, or just a series.
 
+  With $\{a_n\}$ we associate a sequence $\{S_n\}$, where
+  \[S_n=\sum\limits_{k=1}^n a_k.\]
+  The numbers $S_n$ are called the partial sums of the series.
+
+  If $\{S_n\}$ converges to $s$, we say that the series converges, and write
+  \[\sum\limits_{n=1}^{\infty}a_n=s.\]
+  The number $s$ is called the sum of seires; If $\{S_n\}$ diverges, the series is said to diverge.
+\end{definition}
+
+\begin{remark}
+  The above $s$ is called the sum of the series; but it should be clearly understood that s is the limit of a sequence of sums, and is not obtained simply by addition.
+\end{remark}
+
+\begin{remark}
+  It is clear that every theorem about sequences can be state in series. The Cauchy criterion can be restated in the following form. 
+\end{remark}
+
+\begin{remark}
+  For convenience of notation, we shall simply write $\Sigma a_n$ in place of $\sum\limits_{n=1}^{\infty}$.
+\end{remark}
+
+\begin{theorem}[Cauchy criterion]
+  $\Sigma a_n$ converges $\iff$ for every $\varepsilon>0$ there exists an integer $N$ such that if $m\geq n\geq M$
+  \begin{align}
+    |\sum\limits_{k=n}^m a_k|\leq \varepsilon
+  \end{align}
+  It can be poved by the Cauchy criterion of the limit of sequences.
+  And In particular, by taking $m=n$, $(\thesection.1)$ becomes
+  \[|a_n|\leq\varepsilon\quad(n\geq N).\]
+  So we can get the following vanishing condition.
+\end{theorem}
+
+\begin{theorem}[Vanishing condition]
+  If $\Sigma a_n$ converges, then $\lim\limits_{n\to\infty}a_n=0$.
+\end{theorem}
+
+\begin{remark}
+  The condition $a_n\to0$ is not, however, sufficient to ensure convergence of $\Sigma a_n$. For instance, the series 
+  \[\sum\limits_{n=1}^\infty \frac1n\]
+  diverges;and we will prove it in the \textit{Example \thesubsection.2}.
+\end{remark}
+
+\begin{example}
+  let $q\in\mathbb{R}$, discuss the convergence and divergence of the geometric series $\Sigma q^n$.\\
+\textit{Solution:} We know that the partial sum of it is $S_n=\frac{q(1-q^n)}{1-q}$, so we have the series converges when $|q|<1$ and diverges when $|q|\geq1$.
+\end{example}
+
+\begin{example}
+  Determine the convergence and divergence of the harmonic series $\Sigma \frac1n$.\\
+  \textit{Solution:} When $n\geq 1$, we have
+  \[\sum\limits_{k=n+1}{2n}\frac1k\geq\sum\limits_{k=n+1}{2n}\frac1{2n}=\frac12,\]
+  so by Cauchy criterion, we know the original series diverges.
+\end{example}
+
+\subsection{Positive Series}
+\introduction
+\hspace*{2em}
+When studying a subject, we usually proceed from the specific to the general. Therefore, when researching series, we first focus on a specific type of series. It is called the positive series, which, as the name suggests, are series where each term is a positive number. But next, we will also reseach the non-negetive series meanwhile.
+
+\begin{theorem}[Fundamental Test]
+  The positive series converges $\iff$ $\{S_n\}$ is bounded above.
+
+\textit{Proof:} Because $a_n>0$, We conclude that this partial sum $S_n$ is monotonically increasing with respect to $n$. It follows from the fact that a monotonically increasing and bounded above sequence must converge that $\{S_n\}$ converges.
+\end{theorem}
+
+\begin{remark}
+  The above test also holds for $a_n\geq0$.
+\end{remark}
+
+\begin{theorem}[Cauchy Condensation Test]
+  Suppose $a_1\geq a_2\geq a_3\geq\cdots\geq0$. Then the series $\sum\limits_{n=1}^{\infty} a_n$ converges if and only if the series $\sum\limits_{k=0}^\infty 2^ka_{2^k}$ converges.
+
+\textit{Proof:} By the \textit{Theorem \thesubsection.1}, it suffices to consider boundness of the partial sums. let
+\begin{align*}
+  S_n=\sum\limits_{k=1}^n&=a_1+a_2+\cdots+a_n,\\
+  T_m=\sum\limits_{k=0}^m2^ka^{2^k}&=a_1+2a_2+\cdots+2^ma_{2^m}
+\end{align*}
+When $2^m\leq n\leq 2^{m+1}$, we have
+\begin{align*}
+  S_n&\leq a_1+(a_2+a_3)+\cdots+(a_{2^m}+\cdots+a_{2^{m+1}-1})\\ 
+  &\leq a_1+2a_2+\cdots+2^ma^{2^m}=T_m
+\end{align*}
+and 
+\begin{align*}
+  S_n&\geq a_1+a_2+(a_3+a_4)+\cdots+(a_{2^{m-1}+1}+\cdots+a_{2^m})\\
+  &\geq \frac12 a_1+a_2+2a_4+\cdots+2^{m-1}a_{2^m}=\frac12T_m
+\end{align*}
+Thus, we have $S_n$ is bounded above $\iff$ $T_m$ is abounded above. This completes the proof.
+\end{theorem}
+
+\begin{example}
+  $\Sigma \frac1{n^p}$ converges if $p>1$ and diverges if $p\leq 1$.
+
+\textit{Proof:} If $p\leq 0$, divergence follows from the vanishing condition of series. \\
+If $p>0$, \textit{Theorem \thesubsection.2} is applicable, we are led to the series 
+\[\sum\limits_{k=0}^{\infty}2^k\cdot\frac1{2^{kp}}=\sum\limits_{k=0}^{\infty}2^{(1-p)k}=\sum\limits_{k=0}^{\infty}(2^{1-p})^k.\]
+Now, $|2^{1-p}|<1\iff p>1$, and the proof follows by the first example of the previous subsection.
+\end{example}
+
+\begin{example}
+  $\sum\limits_{n=2}^{\infty} \frac1{n(\ln n)^p}$ converges if $p>1$ and diverges if $p\leq 1$.
+
+\textit{Proof:} We consider the series 
+\[\sum\limits_{k=1}^{\infty}2^k\cdot\frac1{2^k(\ln 2^k)^p}=(\ln 2)^{-p}\sum\limits_{k=1}^\infty\frac1{k^p}\]
+By \textit{Example \thesubsection.2}, we can easily prove the original proposition.
+\end{example}
+
+\begin{corollary}
+  The above procedure may evidently be continued. In other words, we can also conclude 
+  \[\sum\limits_{n=3}^\infty\frac1{n\ln n(\ln(\ln n))^p}\] converges if and only if $p>1$, and so forth. For instance,
+  \begin{align}
+    \sum\limits_{n=3}^\infty\frac1{n\ln n(\ln(\ln n))} 
+  \end{align}
+  diverges, whreas
+  \begin{align}
+    \sum\limits_{n=3}^\infty\frac1{n\ln n(\ln(\ln n))^2}
+  \end{align}
+  converges.
+\end{corollary}
+
+\begin{introduction}
+  \hspace*{2em}
+  From the above corollary, we may now observe that the series $(\thesection.2)$ differ very little from those of $(\thesection.3)$. Still, one diverges, and the other converges. If we continue the process which led us from \textit{Example \thesubsection.1} to \textit{Example \thesubsection.2}, and then to $(\thesection.2)$ and $(\thesection.3)$, we also get pairs of convergent and divergent series whose terms differ even less than those of $(\thesection.2)$ and $(\thesection.3)$.\\
+  \hspace*{2em}
+  Thus, one might be led to the conjecture that there is a limiting situation of some sort, i.e. a "boundary" with all convergent series on one side, all divergent series on the other side.
+  Or when n is sufficiently large, Is there a largest convergent series?\\
+  \hspace*{2em}
+  In the following, We shall show that this conjecture is false.
+\end{introduction}
+
+\begin{proposition}
+  Suppose positive seires $\Sigma a_n$ converges, then there must exist positive series $\Sigma b_n$ converges and satisfies $\lim\limits_{n\to\infty}\frac{b_n}{a_n}=+\infty$.
+
+\textit{Proof:} Let 
+\[S_n=a_1+\cdots+a_n,\]
+\[T_n=a_n+a_{n+1}+\cdots=\sum\limits_{k=n}^\infty a_k.\]
+We initially prove that $S_n$ converges $\iff$ $T_n$ converges to $0$. We can easily prove that $T_n$ converges iff $T_n$ converges to $0$. Hence, next we use the Cauchy criterion to prove
+\[S_n ~converges \iff T_n~ converges.\]
+Since for $m>n$,
+\[T_m-T_n=a_n+\cdots+a_{m-1}=S_{m-1}-S_{n-1}\]
+So we have for every $\varepsilon>0$, there exists $N_1>0$, such that for $m>n>N$, $|T_m-T_n|<\varepsilon$, if and only if for every $\varepsilon>0$, there exists $N_1>0$, such that for $m>n>N$, $|S_m-S_n|<\varepsilon$.
+In other words, the above proposition holds.\\
+By
+\[a_n=T_n-T_{n+1}=(\sqrt{T_n}-\sqrt{T_{n+1}})(\sqrt{T_n}+\sqrt{T_{n+1}}),\]
+we set $b_n=\sqrt{T_n}-\sqrt{T_{n+1}}$, and $B_n=\Sigma b_n=\sqrt{T_1}-\sqrt{T_n+1}$.\\
+Hence, $\Sigma b_n$ converges owing to the convergence of $T_n$, and we have 
+\[\frac{b_n}{a_n}=\frac1{\sqrt{T_n}+\sqrt{T_{n+1}}}\to \infty,\quad (n\to \infty)\]
+\end{proposition}
+
+\introduction
+\hspace*{2em}
+From the proof of \textit{Theorem \thesubsection.2}, we can know that for the non-negetive series $\Sigma a_n, \Sigma b_n$, if $A_n\leq B_n$ and $\Sigma b_n$ converges, then $\Sigma a_n$ converges.\\
+\hspace*{2em}
+This is rooted from the \textit{Theorem \thesubsection.1}, we can expand this to more general case.
+
+\begin{theorem}[Comparison Test]
+  Suppose $\Sigma a_n, \Sigma b_n$ are non-negetive series, if there exists $C>0, N\geq1$, such that $a_n\leq Cb_n$ for $n>N$, then if $\Sigma b_n$ converges, $\Sigma a_n$ also converges and if $\Sigma a_n$ diverges, $\Sigma b_n$ also diverges.
+\end{theorem}
+
+\begin{remark}
+  Whether analyzing a single series or comparing two series, we actually don't need to consider the finite initial terms. That is to say, we can only consider the case when n is sufficiently large, and we can even remove the finite terms from one series to compare it with another series.
+\end{remark}
+
+\subsection{The Root and Ratio Tests}
+\begin{introduction}
+  \hspace*{2em}
+  The above comparison test could generate other useful tests if we let $b$ be some series whose convergence or divergence is known.\\
+  \hspace*{2em} 
+  Sometimes if we cannot find some series which have some relationship with the original series, we can try some typical series like $\Sigma q^n, \Sigma \frac1{n^q}, \Sigma \frac1{n\ln n} $
+\end{introduction}
 
 \end{document}
