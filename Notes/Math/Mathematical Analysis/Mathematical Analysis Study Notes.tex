@@ -113,6 +113,13 @@
   So we can get the following vanishing condition.
 \end{theorem}
 
+\begin{proposition}[Absolute Value Property]
+  $\Sigma a_n$ converges if $\Sigma |a_n|$ converges.\\
+  \textit{Proof:} Since
+  \[|a_{m+1}|+\cdots+a_n\leq||a_{m+1}|+\cdots+|a_n||,\]
+  we can easily prove the original proposition by Cauchy criterion.
+\end{proposition}
+
 \begin{theorem}[Vanishing condition]
   If $\Sigma a_n$ converges, then $\lim\limits_{n\to\infty}a_n=0$.
 \end{theorem}
@@ -131,7 +138,7 @@
 \begin{example}
   Determine the convergence and divergence of the harmonic series $\Sigma \frac1n$.\\
   \textit{Solution:} When $n\geq 1$, we have
-  \[\sum\limits_{k=n+1}{2n}\frac1k\geq\sum\limits_{k=n+1}{2n}\frac1{2n}=\frac12,\]
+  \[\sum\limits_{k=n+1}^{2n}\frac1k\geq\sum\limits_{k=n+1}^{2n}\frac1{2n}=\frac12,\]
   so by Cauchy criterion, we know the original series diverges.
 \end{example}
 
@@ -149,6 +156,17 @@ When studying a subject, we usually proceed from the specific to the general. Th
 \begin{remark}
   The above test also holds for $a_n\geq0$.
 \end{remark}
+
+\begin{example}
+  If $\Sigma a_n$ is a psoitive series, and $\frac{a_{n+1}}{a_n}<\frac{n}{n+\alpha}$, where $\alpha>1$, prove that $\Sigma a_n$ converges.\\
+\textit{Proof:} Since
+\[\frac{a_{n+1}}{a_n}<\frac{n}{n+\alpha},\]
+it follows that 
+\[a_n{n+1}<\frac1{\alpha-1(na_n-(n+1)a_{n+1}},\] 
+Thus, we can conclude
+\[S_n<a_1+\frac1{\alpha-1}\sum\limits_{k=1}^{n-1}(ka_k-(k+1)a_{k+1})=a_1+\frac1{\alpha-1}(a_1-na_n)<\frac{\alpha}{\alpha-1}a_1\] 
+Then we have the series is bounded above, and by the above theorem, it follows that the seires converges.
+\end{example}
 
 \begin{theorem}[Cauchy Condensation Test]
   Suppose $a_1\geq a_2\geq a_3\geq\cdots\geq0$. Then the series $\sum\limits_{n=1}^{\infty} a_n$ converges if and only if the series $\sum\limits_{k=0}^\infty 2^ka_{2^k}$ converges.
@@ -237,8 +255,15 @@ From the proof of \textit{Theorem \thesubsection.2}, we can know that for the no
 This is rooted from the \textit{Theorem \thesubsection.1}, we can expand this to more general case.
 
 \begin{theorem}[Comparison Test]
-  Suppose $\Sigma a_n, \Sigma b_n$ are non-negetive series, if there exists $C>0, N\geq1$, such that $a_n\leq Cb_n$ for $n>N$, then if $\Sigma b_n$ converges, $\Sigma a_n$ also converges and if $\Sigma a_n$ diverges, $\Sigma b_n$ also diverges.
+  \begin{enumerate}
+    \item If $|a_n|\leq c_n$ for $n\geq N$, where $N$ is siome fixed integer, and if $\Sigma c_n$ converges , then $\Sigma a_n$ converges.
+    \item If $a_n \geq d_n\geq 0$ or $a_n \leq d_n\leq0$ for $n\geq N$, and if $\Sigma d_n$ diverges ,then $\Sigma a_n$ diverges.
+  \end{enumerate}
 \end{theorem}
+
+\begin{remark}
+  It is also possible to multiply $c_n$ and $d_n$ by a constant $C>0$.
+\end{remark}
 
 \begin{remark}
   Whether analyzing a single series or comparing two series, we actually don't need to consider the finite initial terms. That is to say, we can only consider the case when n is sufficiently large, and we can even remove the finite terms from one series to compare it with another series.
@@ -249,7 +274,105 @@ This is rooted from the \textit{Theorem \thesubsection.1}, we can expand this to
   \hspace*{2em}
   The above comparison test could generate other useful tests if we let $b$ be some series whose convergence or divergence is known.\\
   \hspace*{2em} 
-  Sometimes if we cannot find some series which have some relationship with the original series, we can try some typical series like $\Sigma q^n, \Sigma \frac1{n^q}, \Sigma \frac1{n\ln n} $
+  Sometimes if we cannot find some series which have some relationship with the original series, we can try some typical series like $\Sigma q^n $.
 \end{introduction}
+
+\begin{theorem}[Root Test]
+  Given $\Sigma a_n$, put $\alpha=\overline{\lim\limits_{n\to\infty}}\sqrt[n]{|a_n|}>0$.\\
+  Then 
+  \begin{itemize}
+    \item if $\alpha<1$, $\Sigma a_n$ converges;
+    \item if $\alpha >1$, $\Sigma a_n$ diverges;
+    \item if $\alpha=1$, the test gives no information.
+  \end{itemize}
+  \textit{Proof:} By
+  \[\alpha=\overline{\lim\limits_{n\to\infty}}\sqrt[n]{|a_n|},\]
+  we can know
+  \[
+    \forall\, \varepsilon>0,~\exists\,N>0,~s.t.~\forall\,n>N,~|\sup \{\sqrt[k]{|a_k|}\mid k\geq n\}-\alpha|<\varepsilon,
+  \]
+  i.e.
+  \[\alpha-\varepsilon<\sup \{\sqrt[k]{|a_k|}<\alpha+\varepsilon,\]
+  if $\alpha<1$, it follows that
+  \[\forall\,k\geq n\geq N,~ \sqrt[k]{|a_k|}<\alpha+\varepsilon,\]
+  Because $0<\alpha<1$, we can set $\varepsilon$ such that $\alpha+\varepsilon=q<1$,\\
+  i.e. \[\forall\,k\geq n\geq N,~ |a_k|<(\alpha+\varepsilon)^k=q^k,~(0<q<1).\]
+  Since $\Sigma q^n$ converges if $|q|<1$, $\Sigma |a_n|$ also converges.\\
+  Then it follows that $\Sigma a_n$ converges by absolute value proposition of series.\\
+  If $\alpha>1$, it follows that
+  \[\forall\,n\geq N,~\exists\,k\geq n,~s.t.~ \sqrt[k]{|a_k|}>\alpha-\varepsilon,\]
+  Because $\alpha>1$, we can set $\varepsilon$ such that $\alpha-\varepsilon=q>1$,\\
+  i.e. \[\forall N>0,~\exists\,k\geq N,~ |a_k|>(\alpha-\varepsilon)^k=q^k>1.\]
+  Thus, we can conclude that $|a_n|$ fails to coverge to $0$, and then it follows that $a_n$ also fails to converge to $0$.\\
+  By vanishing condition, $\Sigma a_n$ diverges.\\
+  To prove the case $\alpha=1$, we need to consider the series
+  \[\Sigma\frac1n,\quad\Sigma\frac1{n^2}.\]
+  For each of these seires $\alpha=1$, but the first diverges and the seconde converges.
+\end{theorem}
+  
+\begin{remark}
+  The above theorem also applies to the case where the limit exists, and we can also write it in the form for sufficiently large $n$.
+\end{remark}
+
+\begin{introduction}
+\hspace*{2em} when we utilize the comparison test, we just want to find a constant $C>0$ and a positive series $\Sigma b_n$ such that $\frac{|a_n|}{b_n}<C$ when $n$ is sufficiently large. And we can find that if when $n$ is sufficiently large, $\{\frac{|a_n|}{b_n}\}$ is monotonically decreasing, then the previous equation holds.\\
+\hspace*{2em} In other words, $|\frac{a_{n+1}}{a_n}|\leq \frac{b_{n+1}}{b_n}$ for $n>N$ where $N$ is a fixed integer. And next we can let $b_n$ be some typical series like $\Sigma q^n$.
+\end{introduction}
+
+\begin{theorem}[Ratio Test]
+The seires $\Sigma a_n$
+\begin{itemize}
+  \item converges if $\limsup\limits_{n\to\infty}|\frac{a_{n+1}}{a_n}|<1$,
+  \item diverges if $\liminf\limits_{n\to\infty}|\frac{a_{n+1}}{a_n}|>1$.
+  \item cannot be determined to be convergent or divergent in other cases.
+\end{itemize}
+\textit{Proof:} If $\limsup\limits_{n\to\infty}|\frac{a_{n+1}}{a_n}|<1$, we can find $0<q<1$, and an interger $N_1$, such that 
+\[|\frac{a_{n+1}}{a_n}|<q=\frac{q^{n+1}}{q^n}\]
+for $n>N_1$, so it follows that $\{\frac{|a_n|}{q^n}\}$ is monotonically decreasing when $n$ is sufficiently large. Then the original proposition holds.\\
+If $\liminf\limits_{n\to\infty}|\frac{a_{n+1}}{a_n}|<1$, we can find $r>1$, and an interger $N_2$, such that 
+\[|\frac{a_{n+1}}{a_n}|>r>1\]
+for $n>N_2$, and it is easily seen that the vanishing condition $a_n\to0$ does not hold and the second proposition follows.
+
+\end{theorem}
+
+\begin{remark}
+  The above two theorems can also be written into the form of sufficient $n$. And this form can usually include the case when the ratio equal $1$. However, in the next, we will introduce a more refined test to tackle the case when the previous theorem can not determine, i.e. the ratio $\frac{a_n}{a_{n+1}}$ is close to 1, but may fluctuate slightly around 1 or have higher-order corrections although $n$ is sufficiently large.
+\end{remark}
+
+\begin{theorem}[Guass Test]
+  Given a positive series $\Sigma a_n$, Suppose that for sufficiently large $n$, the ratio of successive terms admits an asymptotic expansion:
+  \[\frac{a_n}{a_{n+1}}=1+\frac hn+\frac{p_n}{n^\alpha},\]
+  where $\alpha>1$ and $p_n$ is bounded, then $\Sigma a_n$ satisfies:
+  \begin{itemize}
+    \item if $h>1$, $\Sigma a_n$ converges.
+    \item if $h<1$, $\Sigma a_n$ diverges.
+    \item if $h=1$, $\Sigma a_n$ is inconclusive.
+  \end{itemize}
+\end{theorem}
+
+\begin{corollary}
+the above theorem have another form: Suppose that for sufficiently large $n$, the ratio of successive terms admits an expansion:
+  \[\frac{a_n}{a_{n+1}}=1+\frac hn+o(\frac1{n\ln n}),\]
+  then $\Sigma a_n$ satisfies:
+  \begin{itemize}
+    \item if $h>1$, $\Sigma a_n$ converges.
+    \item if $h\leq1$, $\Sigma a_n$ diverges.
+  \end{itemize}
+\end{corollary}
+
+\begin{theorem}[Raabe Test]
+  If we turn the Guass test into the limit form, then we can obtain the Rabbe test: Given a positive series $\Sigma a_n$, set
+  \[\lim\limits_{n\to\infty} n(\frac{a_n}{a_{n+1}}-1)=\alpha,\]
+  \begin{itemize}
+    \item if $\alpha>1$, $\Sigma a_n$ converges;
+    \item if $\alpha<1$, $\Sigma a_n$ diverges;
+    \item if $\alpha=1$,the test gives no informaiton.
+  \end{itemize}
+\end{theorem}
+
+\begin{remark}
+  When we reseach the convergence or divergence of series $\Sigma a_n$, we can all initially determine $\Sigma |a_n|$ which is a non-positive series and even a positive series. $\Sigma |a_n|$ is more easily than $\Sigma a_n$ to analysis and can be applied by more tests. In the above root or ratio tests, actually, we all urilize this thought, just first analysis $\Sigma |a_n|$ and then think how to connect the original seires $\Sigma a_n$. 
+\end{remark}
+
 
 \end{document}
