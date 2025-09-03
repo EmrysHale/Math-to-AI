@@ -71,7 +71,7 @@
 \tableofcontents
 \newpage
 
-\section{Numerical Sequences and Series}
+\section{Numerical Series}
 
 \subsection{Series}
 \begin{definition}
@@ -269,6 +269,10 @@ This is rooted from the \textit{Theorem \thesubsection.1}, we can expand this to
   Whether analyzing a single series or comparing two series, we actually don't need to consider the finite initial terms. That is to say, we can only consider the case when n is sufficiently large, and we can even remove the finite terms from one series to compare it with another series.
 \end{remark}
 
+\begin{remark}
+  Maybe someone would ask how to find the appropriate $N$. In fact, sometimes, when we utilize the functions to compare the sequences, we may find the inequalities hold only if $n$ is sufficiently large. For instance, for the series $\Sigma \frac{e^n}{n^{\ln n}}$, we compare it with $Sigma 1$, and we can easily find that $e^x>n\ln n$ holds indeed when $n$ is sufficiently large. Thus the original seires diverges.
+\end{remark}
+
 \subsection{The Root and Ratio Tests}
 \begin{introduction}
   \hspace*{2em}
@@ -371,8 +375,18 @@ the above theorem have another form: Suppose that for sufficiently large $n$, th
 \end{theorem}
 
 \begin{remark}
+  The Raabe test and Guass test is only applicable for the positive series, but the first two can be used for all series.
+\end{remark}
+
+\begin{remark}
   When we reseach the convergence or divergence of series $\Sigma a_n$, we can all initially determine $\Sigma |a_n|$ which is a non-positive series and even a positive series. $\Sigma |a_n|$ is more easily than $\Sigma a_n$ to analysis and can be applied by more tests. In the above root or ratio tests, actually, we all urilize this thought, just first analysis $\Sigma |a_n|$ and then think how to connect the original seires $\Sigma a_n$. 
 \end{remark}
+
+\begin{remark}
+  During the solution process, if the terms involve power functions or expressions with $n$-th powers, the root test is usually applied. If factorials or exponential terms appear, the ratio test is typically used. When the ratio test gives a limit equal to one, Raabe test is employed. If Raabe test is still inconclusive, one then turns to Gauss test or its corollaries, often with the aid of Taylor expansions for further analysis.
+\end{remark}
+
+
 
 
 \end{document}
