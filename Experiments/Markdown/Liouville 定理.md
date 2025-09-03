@@ -1,5 +1,3 @@
-## 1. Liouville 定理
-
 在超越数论中，Liouville 定理是：
 
 > 如果 $\alpha$ 是一个代数数，且次数为 $n \ge 2$，那么存在常数 $C(\alpha) > 0$ 使得对任意有理数 $p/q$：
